@@ -1,6 +1,6 @@
 """Chargement de la configuration du backend."""
-import os
 
+import os
 from dotenv import load_dotenv
 
 # Charge les variables du fichier .env.

@@ -3,9 +3,6 @@
 Le but est d'éviter de répéter requests.get(), les URLs,
 le timeout et le header Authorization dans le front.
 """
-
-from __future__ import annotations
-
 import os
 
 import requests
@@ -53,7 +50,7 @@ def _headers() -> dict[str, str]:
     if not token:
         return {}
 
-    # Toutes les pages bénéficient ainsi du même mécanisme JWT.
+# Toutes les pages bénéficient ainsi du même mécanisme JWT.
     return {
         "Authorization": f"Bearer {token}"
     }
@@ -95,8 +92,7 @@ def appeler(
     if response.ok:
         return response.json()
 
-    # On transforme les erreurs HTTP en une exception unique
-    # que les pages Streamlit savent afficher simplement.
+    # On transforme les erreurs HTTP en une exception unique que les pages Streamlit savent afficher simplement.
     messages = {
         401: "Session absente, invalide ou expirée.",
         403: "Votre rôle ne permet pas cet accès.",

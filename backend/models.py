@@ -11,6 +11,7 @@ class User(Base):
 
     __tablename__ = "users"
     __table_args__ = (
+# Contrainte PostgreSQL : seuls les rôles "reader" et "analyst" sont acceptés. Toute autre valeur (ex: "admin") est refusée à l'insertion.
         CheckConstraint("role IN ('reader', 'analyst')", name="ck_users_role"),
     )
 
@@ -21,10 +22,10 @@ class User(Base):
         index=True,
     )
 
-    # Le mot de passe en clair n'est jamais enregistré.
+# Le mot de passe en clair n'est jamais enregistré.
     password_hash: Mapped[str] = mapped_column(String(100))
 
-    # "reader" : consultation ; "analyst" : accès au bilan.
+# "reader" : consultation ; "analyst" : accès au bilan.
     role: Mapped[str] = mapped_column(String(20))
 
 
@@ -34,6 +35,7 @@ class Frequentation(Base):
     __tablename__ = "frequentations"
     __table_args__ = (
         CheckConstraint("visiteurs >= 0", name="ck_frequentations_visiteurs"),
+# Expression régulière PostgreSQL (opérateur ~) : impose le format AAAA-MM, avec 4 chiffres pour l'année et un mois de 01 à 12. Ex: "2026-03" accepté ; "2026-13" ou "2026-3" refusés.
         CheckConstraint(
             "mois ~ '^[0-9]{4}-(0[1-9]|1[0-2])$'",
             name="ck_frequentations_mois",

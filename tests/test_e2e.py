@@ -46,15 +46,15 @@ def servers():
 
     api = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "backend.main:app",
-         "--port", str(API_PORT)],
+            "--port", str(API_PORT)],
         cwd=ROOT, env=env,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     front = subprocess.Popen(
         [sys.executable, "-m", "streamlit", "run", "frontend/app.py",
-         "--server.port", str(FRONT_PORT),
-         "--server.headless", "true",
-         "--browser.gatherUsageStats", "false"],
+            "--server.port", str(FRONT_PORT),
+            "--server.headless", "true",
+            "--browser.gatherUsageStats", "false"],
         cwd=ROOT, env=env,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )

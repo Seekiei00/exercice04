@@ -6,12 +6,10 @@ from services import api_client
 
 PAGE_SIZE = 5
 
-
 def render() -> None:
     st.title("Fréquentation des médiathèques")
 
-    # Streamlit réexécute le script à chaque interaction :
-    # le numéro de page est donc conservé dans la session.
+# Streamlit réexécute le script à chaque interaction : le numéro de page est donc conservé dans la session.
     if "page_frequentations" not in st.session_state:
         st.session_state["page_frequentations"] = 1
 

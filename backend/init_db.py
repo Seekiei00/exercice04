@@ -1,5 +1,4 @@
 """Initialise PostgreSQL : tables, comptes pédagogiques et 24 observations.
-
 Lancement : python -m backend.init_db
 """
 

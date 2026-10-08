@@ -15,7 +15,7 @@ def render() -> None:
         )
         return
 
-    # st.form soumet les deux champs ensemble (pas à chaque caractère).
+# st.form soumet les deux champs ensemble (pas à chaque caractère).
     with st.form("connexion"):
         identifiant = st.text_input("Identifiant")
         mot_de_passe = st.text_input("Mot de passe", type="password")

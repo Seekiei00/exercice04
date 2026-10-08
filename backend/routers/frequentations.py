@@ -1,7 +1,6 @@
 """Consultation publique et paginée des fréquentations."""
 
 import math
-
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session

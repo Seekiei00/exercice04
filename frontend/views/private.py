@@ -13,8 +13,8 @@ def render() -> None:
         return
 
     try:
-        # Le contrôle d'accès est fait par l'API : le front affiche
-        # simplement la réponse ou l'erreur 401/403.
+# Le contrôle d'accès est fait par l'API : le front affiche
+# simplement la réponse ou l'erreur 401/403.
         bilan = api_client.obtenir("/analytics/bilan")
     except api_client.ErreurApi as erreur:
         if erreur.status_code == 401:
