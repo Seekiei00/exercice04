@@ -97,6 +97,7 @@ def appeler(
         401: "Session absente, invalide ou expirée.",
         403: "Votre rôle ne permet pas cet accès.",
         404: "Ressource introuvable.",
+        409: "Cette ressource existe déjà.",
         422: "Paramètres invalides.",
     }
 
@@ -122,11 +123,22 @@ def connexion(username: str, password: str) -> dict:
     )
 
 
+def inscription(username: str, password: str) -> dict:
+
+    return appeler(
+        "POST",
+        "/auth/register",
+        json={
+            "username": username,
+            "password": password,
+        },
+    )
+
+
 def obtenir(
     path: str,
     params: dict | None = None,
 ) -> dict:
-    """Effectue un GET vers FastAPI."""
 
     return appeler(
         "GET",

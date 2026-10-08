@@ -1,11 +1,19 @@
 """Schémas Pydantic utilisés par l'API."""
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class LoginRequest(BaseModel):
     username: str
     password: str
+
+
+class RegisterRequest(BaseModel):
+    """Inscription : le rôle n'est pas fourni par le client."""
+
+    username: str = Field(min_length=3, max_length=50, pattern=r"^[A-Za-z0-9_.-]+$")
+    # bcrypt ne prend en compte que les 72 premiers octets.
+    password: str = Field(min_length=8, max_length=72)
 
 
 class TokenResponse(BaseModel):
